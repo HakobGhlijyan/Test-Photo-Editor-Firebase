@@ -21,11 +21,7 @@ final class ResetPasswordViewModel: ObservableObject {
     
     func resetPassword() async throws {
         isLoading = true
-        let authUser = try AuthenticationManager.shared.getAuthenticatedUser()
-        guard let email = authUser.email else {
-            isLoading = false
-            throw URLError(.badURL)
-        }
+        errorMessage = "Your password reset sen email, \nplease set new password!"
         try await AuthenticationManager.shared.resetPassword(email: email)
         isLoading = false
     }
@@ -33,6 +29,7 @@ final class ResetPasswordViewModel: ObservableObject {
 
 struct ResetPasswordView: View {
     @StateObject private var viewModel = ResetPasswordViewModel()
+    @Binding var showSignInView: Bool
     
     var body: some View {
         VStack {
@@ -74,6 +71,7 @@ struct ResetPasswordView: View {
                 Text(errorMessage)
                     .foregroundColor(.red)
                     .padding()
+                    .multilineTextAlignment(.center)
             }
             
             Spacer()
@@ -82,13 +80,19 @@ struct ResetPasswordView: View {
         .navigationTitle("Reset Password")
         .navigationBarTitleDisplayMode(.inline)
         .alert(isPresented: .constant(viewModel.errorMessage != nil)) {
-            Alert(title: Text("Error"), message: Text(viewModel.errorMessage ?? ""), dismissButton: .default(Text("OK")))
+            Alert(
+                title: Text("Error"),
+                message: Text(viewModel.errorMessage ?? ""),
+                dismissButton: .default(Text("OK"), action: {
+                    viewModel.errorMessage = nil
+                })
+            )
         }
     }
 }
 
 #Preview {
     NavigationStack {
-        ResetPasswordView()
+        ResetPasswordView(showSignInView: .constant(false))
     }
 }

@@ -105,7 +105,7 @@ struct LoginView: View {
             
             HStack(spacing: 0.0) {
                 Spacer()
-                NavigationLink("Forgot Password?", destination: ResetPasswordView())
+                NavigationLink("Forgot Password?", destination: ResetPasswordView(showSignInView: $showSignInView))
                     .font(.subheadline)
             }
             .padding(.vertical, 16)
@@ -140,7 +140,9 @@ struct LoginView: View {
                 Text(errorMessage)
                     .foregroundColor(.red)
                     .padding()
+                    .multilineTextAlignment(.center)
             }
+            
             Spacer()
 
             Text("OR SIGN UP")
@@ -173,9 +175,15 @@ struct LoginView: View {
         })
         .navigationTitle("Login Email")
         .navigationBarTitleDisplayMode(.inline)
-//        .alert(isPresented: .constant(viewModel.errorMessage != nil)) {
-//            Alert(title: Text("Error"), message: Text(viewModel.errorMessage ?? ""), dismissButton: .default(Text("OK")))
-//        }
+        .alert(isPresented: .constant(viewModel.errorMessage != nil)) {
+            Alert(
+                title: Text("Error"),
+                message: Text(viewModel.errorMessage ?? ""),
+                dismissButton: .default(Text("OK"), action: {
+                    viewModel.errorMessage = nil
+                })
+            )
+        }
     }
 }
 

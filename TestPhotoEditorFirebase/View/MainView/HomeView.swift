@@ -87,25 +87,25 @@ struct HomeView: View {
                         if viewModel.authProvider.contains(.email) {
                             Section("Update") {
                                 Button("Password Update") {
-                                    Task {
-                                        do {
-                                            try await viewModel.updatePassword()
-                                            print("Password update")
-                                        } catch {
-                                            print(error)
-                                        }
-                                    }
+//                                    Task {
+//                                        do {
+//                                            try await viewModel.updatePassword()
+//                                            print("Password update")
+//                                        } catch {
+//                                            print(error)
+//                                        }
+//                                    }
                                 }
                                 
                                 Button("Email Update") {
-                                    Task {
-                                        do {
-                                            try await viewModel.updateEmail()
-                                            print("Email update")
-                                        } catch {
-                                            print(error)
-                                        }
-                                    }
+//                                    Task {
+//                                        do {
+//                                            try await viewModel.updateEmail()
+//                                            print("Email update")
+//                                        } catch {
+//                                            print(error)
+//                                        }
+//                                    }
                                 }
                             }
                             Section("Reset") {
@@ -113,6 +113,8 @@ struct HomeView: View {
                                     Task {
                                         do {
                                             try await viewModel.resetPassword()
+                                            try viewModel.signOut()
+                                            showSignInView = true
                                             print("Password Reset")
                                         } catch {
                                             print(error)

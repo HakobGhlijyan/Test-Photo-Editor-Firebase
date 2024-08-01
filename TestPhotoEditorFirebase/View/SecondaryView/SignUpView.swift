@@ -141,6 +141,7 @@ struct SignUpView: View {
                     Text(errorMessage)
                         .foregroundColor(.red)
                         .padding()
+                        .multilineTextAlignment(.center)
                 }
 
                 Spacer()
@@ -155,12 +156,15 @@ struct SignUpView: View {
             .padding()
             .navigationTitle("Sign Up")
             .navigationBarTitleDisplayMode(.inline)
-    //        .alert(isPresented: .constant(viewModel.errorMessage != nil)) {
-    //            Alert(title: Text("Error"), message: Text(viewModel.errorMessage ?? ""), dismissButton: .default(Text("OK")))
-    //        }
-    //        .alert(isPresented: $viewModel.alertState, content: {
-    //            Alert(title: Text("Success"), message: Text("You Registred \nPlease Log in"), dismissButton: .default(Text("OK")))
-    //        })
+            .alert(isPresented: .constant(viewModel.errorMessage != nil)) {
+                Alert(
+                    title: Text("Error"),
+                    message: Text(viewModel.errorMessage ?? ""),
+                    dismissButton: .default(Text("OK"), action: {
+                        viewModel.errorMessage = nil
+                    })
+                )
+            }
         }
     }
 }
