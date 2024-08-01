@@ -18,21 +18,25 @@ final class LoginViewModel: ObservableObject {
     @Published var password:String = ""
     @Published var errorMessage: String?
     @Published var isLoading: Bool = false
-
-    func signUp() async throws {
-        guard !email.isEmpty, !password.isEmpty else {
-            print("No Email and Password found!!!")
-            return
-        }
-        try await AuthenticationManager.shared.createUser(email: email, password: password)
-    }
     
     func signIn() async throws {
+        isLoading = true
         guard !email.isEmpty, !password.isEmpty else {
-            print("No Email and Password found!!!")
+            errorMessage = "No Email and Password found!!!"
             return
         }
         try await AuthenticationManager.shared.signInUser(email: email, password: password)
+        isLoading = false
+    }
+    
+    func signUp() async throws {
+        isLoading = true
+        guard !email.isEmpty, !password.isEmpty else {
+            self.errorMessage = "Please entre Email and password!!!"
+            return
+        }
+        try await AuthenticationManager.shared.createUser(email: email, password: password)
+        isLoading = false
     }
     
     func singInGoogle() async throws {
@@ -44,7 +48,10 @@ final class LoginViewModel: ObservableObject {
 
 struct LoginView: View {
     @StateObject private var viewModel = LoginViewModel()
+    
     @Binding var showSignInView: Bool
+    @State var isPresentedSignUpView: Bool = false
+    let padding: CGFloat = 16
     
     var body: some View {
         VStack {
@@ -52,32 +59,63 @@ struct LoginView: View {
                 .padding(.bottom)
 
             VStack(spacing: 16.0) {
-                //1.1
-                TextField("Email", text: $viewModel.email)
-                    .autocapitalization(.none)
-                    .textFieldStyleCustom()
-                //1.2
-                //CustomTextfield(text: $viewModel.email, textFiledBandle: "Email")
-                
-                //2.1
-                SecureField("Password", text: $viewModel.password)
-                    .textFieldStyleCustom()
-                //2.2
-                //CustomTextfield(text: $viewModel.password, textFiledBandle: "Password")
+                HStack(spacing: 0.0) {
+                    Image(systemName: "mail")
+                        .font(.title3)
+                        .bold()
+                        .frame(width: 30)
+                        .padding(.trailing, 8)
+                    //1.1
+                    TextField("Email", text: $viewModel.email)
+                        .autocapitalization(.none)
+                        .textFieldStyleCustom()
+                    //1.2
+//                    CustomTextfield(text: $viewModel.email, textFiledBandle: "Email")
+                }
+                .overlay(alignment: .trailing) {
+                    if (viewModel.email.count != 0) {
+                        Image(systemName: viewModel.email.isValidEmail() ? "checkmark" : "xmark")
+                            .fontWeight(.bold)
+                            .foregroundColor(viewModel.email.isValidEmail() ? .green : .red)
+                            .offset(x: -(padding + 4))
+                    }
+                }
+
+                HStack(spacing: 0.0) {
+                    Image(systemName: "lock")
+                        .font(.title3)
+                        .bold()
+                        .frame(width: 30)
+                        .padding(.trailing, 8)
+                    //2.1
+                    SecureField("Password", text: $viewModel.password)
+                        .textFieldStyleCustom()
+                    //2.2
+                    //CustomTextfield(text: $viewModel.password, textFiledBandle: "Password")
+                }
+                .overlay(alignment: .trailing) {
+                    if(viewModel.password.count != 0) {
+                        Image(systemName: isValidPassword(viewModel.password) ? "checkmark" : "xmark")
+                            .fontWeight(.bold)
+                            .foregroundColor(isValidPassword(viewModel.password) ? .green : .red)
+                            .offset(x: -(padding + 4))
+                    }
+                }
             }
             
-            HStack {
+            HStack(spacing: 0.0) {
                 Spacer()
                 NavigationLink("Forgot Password?", destination: ResetPasswordView())
                     .font(.subheadline)
             }
             .padding(.vertical, 16)
+            .background()
             
             if viewModel.isLoading {
                 ProgressView()
                     .padding()
             } else {
-                Button("Log In") {
+                Button(action: {
                     Task {
                         do {
                             try await viewModel.signIn()
@@ -86,11 +124,16 @@ struct LoginView: View {
                             return
                         } catch {
                             self.viewModel.errorMessage = error.localizedDescription
+                            self.viewModel.isLoading = false
+
                             print(error)
                         }
                     }
-                }
-                .buttonStyleCustom()
+                }, label: {
+                    Text("Log In")
+                        .buttonStyleCustom()
+                })
+                
             }
             
             if let errorMessage = viewModel.errorMessage {
@@ -100,11 +143,11 @@ struct LoginView: View {
             }
             Spacer()
 
-            Text("OR")
+            Text("OR SIGN UP")
                 .font(.headline)
                 .padding()
             
-            HStack(alignment: .top, spacing: 28.0) {
+            HStack(alignment: .center, spacing: 28.0) {
                 GoogleSigInButtonCustom {
                     Task {
                         do {
@@ -117,19 +160,22 @@ struct LoginView: View {
                     }
                 }
                 
-                NavigationLink("Sing Up With Email", destination: SignUpView())
-                    .padding(.top, 10)
-                    .buttonStyle(.bordered)
-                
+                Button(action: {
+                    isPresentedSignUpView.toggle()
+                }, label: {
+                    EmailSignInButtonCustom()
+                })
             }
-            
         }
-        .padding()
-        .navigationTitle("Log In With Email")
+        .padding(padding)
+        .sheet(isPresented: $isPresentedSignUpView, content: {
+            SignUpView(showSignInView: $showSignInView)
+        })
+        .navigationTitle("Login Email")
         .navigationBarTitleDisplayMode(.inline)
-        .alert(isPresented: .constant(viewModel.errorMessage != nil)) {
-            Alert(title: Text("Error"), message: Text(viewModel.errorMessage ?? ""), dismissButton: .default(Text("OK")))
-        }
+//        .alert(isPresented: .constant(viewModel.errorMessage != nil)) {
+//            Alert(title: Text("Error"), message: Text(viewModel.errorMessage ?? ""), dismissButton: .default(Text("OK")))
+//        }
     }
 }
 

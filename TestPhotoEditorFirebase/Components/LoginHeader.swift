@@ -15,7 +15,7 @@ struct LoginHeader: View {
                 .fontWeight(.medium)
                 .padding()
             
-            Text("Welcome to back, You've \nbeen missed")
+            Text("Welcome to back, \nYou've been missed")
                 .multilineTextAlignment(.center)
         }
     }

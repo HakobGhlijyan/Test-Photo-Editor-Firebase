@@ -14,6 +14,7 @@ struct TestPhotoEditorFirebaseApp: App {
     
     init() {
         FirebaseApp.configure()
+        print("Start \nFirebase Configure \nFirebase Configure \nFirebase Configure \nFirebase Configure \nFirebase Configure \nFirebase Configure \nWork")
     }
     
     var body: some Scene {

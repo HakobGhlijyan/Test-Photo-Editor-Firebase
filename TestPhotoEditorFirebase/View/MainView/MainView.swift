@@ -14,13 +14,12 @@ import GoogleSignInSwift
 
 struct MainView: View {
     @State private var showSignInView: Bool = false
-        
+    
     var body: some View {
         ZStack {
             if !showSignInView {
                 NavigationStack {
                     HomeView(showSignInView: $showSignInView)
-                        .preferredColorScheme(.light)
                 }
             }
         }
@@ -31,11 +30,8 @@ struct MainView: View {
         .fullScreenCover(isPresented: $showSignInView) {
             NavigationStack {
                 LoginView(showSignInView: $showSignInView)
-                    .preferredColorScheme(.light)
-
             }
         }
-        
     }
 }
 

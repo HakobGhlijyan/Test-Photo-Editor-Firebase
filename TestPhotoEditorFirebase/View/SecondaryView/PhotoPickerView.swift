@@ -18,55 +18,38 @@ struct PhotoPickerView: View {
     @State var angle:Angle = Angle(degrees: 0)
     
     var body: some View {
-        VStack(spacing: 40.0) {
-            //1
-            if let image = viewModel.selectedImage {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 200, height: 200)
-                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                //Angle
-                    .rotationEffect(angle)
-                //gesture
-                    .gesture(
-                        RotationGesture()
-                            .onChanged { value in
-                                angle = value
-                            }
-                            .onEnded { value in
-                                withAnimation(.spring()){
-                                    angle = Angle(degrees: 0)
-                                }
-                            }
-                    )
-                
-            }
-            
+        VStack {
             PhotosPicker(selection: $viewModel.imageSelection, matching: .images) {
-                Text("Open one : The Photo Picker")
-                    .foregroundStyle(.red)
+                Text("Open The Photo Picker")
+                    .foregroundStyle(.white)
             }
+            .buttonStyleCustom()
+            .padding()
             
-            //2
-            if !viewModel.selectedImages.isEmpty {
-                ScrollView(.horizontal, showsIndicators: false, content: {
-                    HStack {
-                        ForEach(viewModel.selectedImages, id: \.self) { image in
-                            Image(uiImage: image)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 200, height: 200)
-                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        }
-                    }
-                })
+            VStack {
+                if let image = viewModel.selectedImage {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: .infinity)
+                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    //Angle
+                        .rotationEffect(angle)
+                    //gesture
+                        .gesture(
+                            RotationGesture()
+                                .onChanged { value in
+                                    angle = value
+                                }
+                                .onEnded { value in
+                                    withAnimation(.spring()){
+                                        angle = Angle(degrees: 0)
+                                    }
+                                }
+                        )
+                }
             }
-            
-            PhotosPicker(selection: $viewModel.imageSelections, matching: .images) {
-                Text("Open More : The Photo Picker")
-                    .foregroundStyle(.green)
-            }
+            .padding()
         }
     }
 }

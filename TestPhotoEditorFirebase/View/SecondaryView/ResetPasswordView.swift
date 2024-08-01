@@ -54,7 +54,7 @@ struct ResetPasswordView: View {
                 ProgressView()
                     .padding()
             } else {
-                Button("Send Reset Link") {
+                Button(action: {
                     Task {
                         do {
                             try await viewModel.resetPassword()
@@ -64,8 +64,10 @@ struct ResetPasswordView: View {
                             print(error)
                         }
                     }
-                }
-                .buttonStyleCustom()
+                 }, label: {
+                     Text("Send Reset Link")
+                         .buttonStyleCustom()
+                 })
             }
             
             if let errorMessage = self.viewModel.errorMessage {

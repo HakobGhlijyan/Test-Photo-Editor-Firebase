@@ -32,7 +32,7 @@ final class HomeViewModel: ObservableObject {
     }
     
     func updateEmail() async throws {
-        let emailExample = "gorgsalvatore2@rambler.ru"
+        let emailExample = "google@g.com"
         try await AuthenticationManager.shared.updateEmail(email: emailExample)
     }
     
@@ -44,83 +44,92 @@ final class HomeViewModel: ObservableObject {
 }
 
 struct HomeView: View {
-    @StateObject private var viewmodel = HomeViewModel()
+    @StateObject private var viewModel = HomeViewModel()
     @Binding var showSignInView: Bool
+    @State private var selection: Int = 1
 
     var body: some View {
-        VStack {
-            Text("Welcome to the It's Home View!")
-                .font(.largeTitle)
-                .padding()
-                .multilineTextAlignment(.center)
-            Spacer()
-            PhotoPickerView()
-            Spacer()
-            Button("Logout") {
-                
-            }
-            .buttonStyleCustom()
-            
-            List {
-                Section("Log Out") {
-                    Button("Log Out") {
-                        Task {
-                            do {
-                                try viewmodel.signOut()
-                                showSignInView = true
-                                print("Log Out")
-                            } catch {
-                                print(error)
-                            }
-                        }
+        TabView(selection: $selection) {
+            //1
+            NavigationStack {
+                ScrollView {
+                    VStack(spacing: 0.0) {
+                        Text("Welcome to the It's Home View!")
+                            .font(.largeTitle)
+                            .padding()
+                            .multilineTextAlignment(.center)
+                        
+                        PhotoPickerView()
                     }
                 }
-                
-                if viewmodel.authProvider.contains(.email) {
-                    Section("Update") {
-                        Button("Password Update") {
-                            Task {
-                                do {
-                                    try await viewmodel.updatePassword()
-                                    print("Password update")
-                                } catch {
-                                    print(error)
+                .navigationTitle("Photo")
+            }
+            .tabItem { Label("Photo", systemImage: "photo") }
+            .tag(1)
+            
+            //2
+            NavigationStack {
+                    List {
+                        Section("Log Out") {
+                            Button("Log Out") {
+                                Task {
+                                    do {
+                                        try viewModel.signOut()
+                                        showSignInView = true
+                                        print("Log Out")
+                                    } catch {
+                                        print(error)
+                                    }
                                 }
                             }
                         }
                         
-                        Button("Email Update") {
-                            Task {
-                                do {
-                                    try await viewmodel.updateEmail()
-                                    print("Email update")
-                                } catch {
-                                    print(error)
+                        if viewModel.authProvider.contains(.email) {
+                            Section("Update") {
+                                Button("Password Update") {
+                                    Task {
+                                        do {
+                                            try await viewModel.updatePassword()
+                                            print("Password update")
+                                        } catch {
+                                            print(error)
+                                        }
+                                    }
+                                }
+                                
+                                Button("Email Update") {
+                                    Task {
+                                        do {
+                                            try await viewModel.updateEmail()
+                                            print("Email update")
+                                        } catch {
+                                            print(error)
+                                        }
+                                    }
+                                }
+                            }
+                            Section("Reset") {
+                                Button("Password Reset") {
+                                    Task {
+                                        do {
+                                            try await viewModel.resetPassword()
+                                            print("Password Reset")
+                                        } catch {
+                                            print(error)
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
-                    Section("Reset") {
-                        Button("Password Reset") {
-                            Task {
-                                do {
-                                    try await viewmodel.resetPassword()
-                                    print("Password Reset")
-                                } catch {
-                                    print(error)
-                                }
-                            }
-                        }
-                    }
-                }
+                    .navigationTitle("Settings")
             }
-            .onAppear {
-                viewmodel.loadAuthProvider()
-            }
-            
-            .padding(.horizontal, 80)
+            .tabItem { Label("Settings", systemImage: "gear") }
+            .tag(2)
         }
-        .padding()
+        .onAppear {
+            viewModel.loadAuthProvider()
+        }
     }
 }
 
