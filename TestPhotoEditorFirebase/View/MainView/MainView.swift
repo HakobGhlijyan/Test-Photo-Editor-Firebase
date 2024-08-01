@@ -10,26 +10,35 @@ import Firebase
 import FirebaseCore
 import FirebaseAuth
 import GoogleSignIn
+import GoogleSignInSwift
 
-struct MainView: View {    
-    
-    @State private var authViewModel = AuthViewModel()
-    
+struct MainView: View {
+    @State private var showSignInView: Bool = false
+        
     var body: some View {
-        Group {
-            if authViewModel.isLoggedIn {
-                HomeView(authViewModel: authViewModel)
-            } else {
+        ZStack {
+            if !showSignInView {
                 NavigationStack {
-                    LoginView(authViewModel: authViewModel)
+                    HomeView(showSignInView: $showSignInView)
+                        .preferredColorScheme(.light)
                 }
             }
         }
-        .environment(authViewModel)
+        .onAppear {
+            let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
+            self.showSignInView = authUser == nil ? true : false
+        }
+        .fullScreenCover(isPresented: $showSignInView) {
+            NavigationStack {
+                LoginView(showSignInView: $showSignInView)
+                    .preferredColorScheme(.light)
+
+            }
+        }
+        
     }
 }
 
 #Preview {
     MainView()
-        .environment(AuthViewModel.preview)
 }

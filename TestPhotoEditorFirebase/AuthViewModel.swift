@@ -59,15 +59,17 @@ import Observation
         }
     }
 
+    ///!!!!
     func logout() {
         try? Auth.auth().signOut()
         isLoggedIn = false
     }
     
-    // Mock Data for Preview
+    /// Mock Data for Preview!!!!
     static var preview: AuthViewModel {
         let authViewModel = AuthViewModel()
         authViewModel.isLoggedIn = false
         return authViewModel
     }
 }
+

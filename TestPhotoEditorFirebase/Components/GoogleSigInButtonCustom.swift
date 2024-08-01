@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GoogleSigInButton: View {
+struct GoogleSigInButtonCustom: View {
     var action: () -> Void
     
     var body: some View {
@@ -33,7 +33,7 @@ struct GoogleSigInButton: View {
 }
 
 #Preview {
-    GoogleSigInButton {
+    GoogleSigInButtonCustom {
         //Action sign in google
     }
 }

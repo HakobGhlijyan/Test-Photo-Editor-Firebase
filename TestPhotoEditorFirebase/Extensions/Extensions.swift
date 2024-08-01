@@ -21,7 +21,7 @@ struct ButtonModifier: ViewModifier {
         content
             .padding()
             .frame(maxWidth: .infinity)
-            .background(Color.blue)
+            .background(Color.blue.gradient)
             .foregroundColor(.white)
             .cornerRadius(8)
     }

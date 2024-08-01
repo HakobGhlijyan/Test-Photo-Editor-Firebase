@@ -13,31 +13,62 @@ import FirebaseCore
 import FirebaseAuth
 import GoogleSignIn
 
+@MainActor
+final class ResetPasswordViewModel: ObservableObject {
+    @Published var email: String = ""
+    @Published var errorMessage: String?
+    @Published var isLoading: Bool = false
+    
+    func resetPassword() async throws {
+        isLoading = true
+        let authUser = try AuthenticationManager.shared.getAuthenticatedUser()
+        guard let email = authUser.email else {
+            isLoading = false
+            throw URLError(.badURL)
+        }
+        try await AuthenticationManager.shared.resetPassword(email: email)
+        isLoading = false
+    }
+}
+
 struct ResetPasswordView: View {
-    @Bindable var authViewModel: AuthViewModel
-    @State private var email: String = ""
+    @StateObject private var viewModel = ResetPasswordViewModel()
     
     var body: some View {
         VStack {
-            Text("Reset Password")
-                .font(.largeTitle)
+            Text("Do you not remember your password?")
+                .font(.title)
+                .fontWeight(.bold)
+                .multilineTextAlignment(.center)
                 .padding(.bottom, 20)
             
-            TextField("Email", text: $email)
+            TextField("Email", text: $viewModel.email)
                 .autocapitalization(.none)
                 .textFieldStyleCustom()
+                .padding(.bottom, 20)
             
-            if authViewModel.isLoading {
+//            CustomTextfield(text: $viewModel.email, textFiledBandle: "Email")
+//                .padding(.bottom, 20)
+            
+            if viewModel.isLoading {
                 ProgressView()
                     .padding()
             } else {
                 Button("Send Reset Link") {
-                    authViewModel.sendPasswordReset(email: email)
+                    Task {
+                        do {
+                            try await viewModel.resetPassword()
+                            print("Password Reset")
+                        } catch {
+                            self.viewModel.errorMessage = error.localizedDescription
+                            print(error)
+                        }
+                    }
                 }
                 .buttonStyleCustom()
             }
             
-            if let errorMessage = authViewModel.errorMessage {
+            if let errorMessage = self.viewModel.errorMessage {
                 Text(errorMessage)
                     .foregroundColor(.red)
                     .padding()
@@ -46,14 +77,16 @@ struct ResetPasswordView: View {
             Spacer()
         }
         .padding()
-        .alert(isPresented: .constant(authViewModel.errorMessage != nil)) {
-            Alert(title: Text("Error"), message: Text(authViewModel.errorMessage ?? ""), dismissButton: .default(Text("OK")))
+        .navigationTitle("Reset Password")
+        .navigationBarTitleDisplayMode(.inline)
+        .alert(isPresented: .constant(viewModel.errorMessage != nil)) {
+            Alert(title: Text("Error"), message: Text(viewModel.errorMessage ?? ""), dismissButton: .default(Text("OK")))
         }
     }
 }
 
 #Preview {
     NavigationStack {
-        ResetPasswordView(authViewModel: AuthViewModel.preview)
+        ResetPasswordView()
     }
 }

@@ -19,15 +19,18 @@
 		342CE4AE2C5B9A18004C3774 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4AD2C5B9A18004C3774 /* MainView.swift */; };
 		342CE4B22C5B9A3E004C3774 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4B12C5B9A3E004C3774 /* HomeView.swift */; };
 		342CE4B42C5B9A5B004C3774 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4B32C5B9A5B004C3774 /* LoginView.swift */; };
-		342CE4B62C5B9A70004C3774 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4B52C5B9A70004C3774 /* RegisterView.swift */; };
+		342CE4B62C5B9A70004C3774 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4B52C5B9A70004C3774 /* SignUpView.swift */; };
 		342CE4B82C5B9A85004C3774 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4B72C5B9A85004C3774 /* ResetPasswordView.swift */; };
 		342CE4BA2C5B9AA9004C3774 /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4B92C5B9AA9004C3774 /* PhotoPickerView.swift */; };
-		342CE4BC2C5B9AC7004C3774 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4BB2C5B9AC7004C3774 /* AuthViewModel.swift */; };
 		342CE4BE2C5B9AE1004C3774 /* PhotoPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4BD2C5B9AE1004C3774 /* PhotoPickerViewModel.swift */; };
 		342CE4C22C5B9BBB004C3774 /* LoginHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4C12C5B9BBB004C3774 /* LoginHeader.swift */; };
-		342CE4C42C5B9BFB004C3774 /* GoogleSigInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4C32C5B9BFB004C3774 /* GoogleSigInButton.swift */; };
+		342CE4C42C5B9BFB004C3774 /* GoogleSigInButtonCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4C32C5B9BFB004C3774 /* GoogleSigInButtonCustom.swift */; };
 		342CE4C62C5B9C51004C3774 /* CustomTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4C52C5B9C51004C3774 /* CustomTextfield.swift */; };
-		342CE4C82C5B9CBA004C3774 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4C72C5B9CBA004C3774 /* LoginButton.swift */; };
+		342CE4CA2C5BA1FB004C3774 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4C92C5BA1FB004C3774 /* AuthenticationManager.swift */; };
+		342CE4CC2C5BA22F004C3774 /* SignInWithGoogleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4CB2C5BA22F004C3774 /* SignInWithGoogleHelper.swift */; };
+		342CE4CE2C5BA289004C3774 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4CD2C5BA289004C3774 /* Utilities.swift */; };
+		34F594DB2C5BA69900ABACB1 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F594DA2C5BA69900ABACB1 /* AuthenticationViewModel.swift */; };
+		34F594DD2C5BA70100ABACB1 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F594DC2C5BA70100ABACB1 /* AuthViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,15 +44,18 @@
 		342CE4AD2C5B9A18004C3774 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		342CE4B12C5B9A3E004C3774 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		342CE4B32C5B9A5B004C3774 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		342CE4B52C5B9A70004C3774 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		342CE4B52C5B9A70004C3774 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		342CE4B72C5B9A85004C3774 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		342CE4B92C5B9AA9004C3774 /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
-		342CE4BB2C5B9AC7004C3774 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		342CE4BD2C5B9AE1004C3774 /* PhotoPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewModel.swift; sourceTree = "<group>"; };
 		342CE4C12C5B9BBB004C3774 /* LoginHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHeader.swift; sourceTree = "<group>"; };
-		342CE4C32C5B9BFB004C3774 /* GoogleSigInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSigInButton.swift; sourceTree = "<group>"; };
+		342CE4C32C5B9BFB004C3774 /* GoogleSigInButtonCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSigInButtonCustom.swift; sourceTree = "<group>"; };
 		342CE4C52C5B9C51004C3774 /* CustomTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextfield.swift; sourceTree = "<group>"; };
-		342CE4C72C5B9CBA004C3774 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
+		342CE4C92C5BA1FB004C3774 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		342CE4CB2C5BA22F004C3774 /* SignInWithGoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithGoogleHelper.swift; sourceTree = "<group>"; };
+		342CE4CD2C5BA289004C3774 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		34F594DA2C5BA69900ABACB1 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		34F594DC2C5BA70100ABACB1 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				342CE4872C5B92BA004C3774 /* TestPhotoEditorFirebaseApp.swift */,
+				34F594DC2C5BA70100ABACB1 /* AuthViewModel.swift */,
+				34F594DA2C5BA69900ABACB1 /* AuthenticationViewModel.swift */,
 				342CE4A72C5B9899004C3774 /* Managers */,
 				342CE4A22C5B984C004C3774 /* Model */,
 				342CE4A32C5B9856004C3774 /* ViewModel */,
@@ -118,7 +126,6 @@
 		342CE4A32C5B9856004C3774 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				342CE4BB2C5B9AC7004C3774 /* AuthViewModel.swift */,
 				342CE4BD2C5B9AE1004C3774 /* PhotoPickerViewModel.swift */,
 			);
 			path = ViewModel;
@@ -146,8 +153,8 @@
 			isa = PBXGroup;
 			children = (
 				342CE4B32C5B9A5B004C3774 /* LoginView.swift */,
-				342CE4B52C5B9A70004C3774 /* RegisterView.swift */,
 				342CE4B72C5B9A85004C3774 /* ResetPasswordView.swift */,
+				342CE4B52C5B9A70004C3774 /* SignUpView.swift */,
 				342CE4B92C5B9AA9004C3774 /* PhotoPickerView.swift */,
 			);
 			path = SecondaryView;
@@ -156,6 +163,8 @@
 		342CE4A72C5B9899004C3774 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				342CE4C92C5BA1FB004C3774 /* AuthenticationManager.swift */,
+				342CE4CB2C5BA22F004C3774 /* SignInWithGoogleHelper.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -164,9 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				342CE4C12C5B9BBB004C3774 /* LoginHeader.swift */,
-				342CE4C32C5B9BFB004C3774 /* GoogleSigInButton.swift */,
+				342CE4C32C5B9BFB004C3774 /* GoogleSigInButtonCustom.swift */,
 				342CE4C52C5B9C51004C3774 /* CustomTextfield.swift */,
-				342CE4C72C5B9CBA004C3774 /* LoginButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -176,6 +184,7 @@
 			children = (
 				342CE49F2C5B965C004C3774 /* GoogleService-Info.plist */,
 				342CE48B2C5B92BB004C3774 /* Assets.xcassets */,
+				342CE4CD2C5BA289004C3774 /* Utilities.swift */,
 			);
 			path = Utilites;
 			sourceTree = "<group>";
@@ -270,17 +279,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				342CE4C62C5B9C51004C3774 /* CustomTextfield.swift in Sources */,
-				342CE4BC2C5B9AC7004C3774 /* AuthViewModel.swift in Sources */,
 				342CE4B42C5B9A5B004C3774 /* LoginView.swift in Sources */,
+				342CE4CA2C5BA1FB004C3774 /* AuthenticationManager.swift in Sources */,
 				342CE4BE2C5B9AE1004C3774 /* PhotoPickerViewModel.swift in Sources */,
 				342CE4AE2C5B9A18004C3774 /* MainView.swift in Sources */,
+				34F594DB2C5BA69900ABACB1 /* AuthenticationViewModel.swift in Sources */,
 				342CE4B82C5B9A85004C3774 /* ResetPasswordView.swift in Sources */,
 				342CE4BA2C5B9AA9004C3774 /* PhotoPickerView.swift in Sources */,
-				342CE4B62C5B9A70004C3774 /* RegisterView.swift in Sources */,
+				34F594DD2C5BA70100ABACB1 /* AuthViewModel.swift in Sources */,
+				342CE4CC2C5BA22F004C3774 /* SignInWithGoogleHelper.swift in Sources */,
+				342CE4B62C5B9A70004C3774 /* SignUpView.swift in Sources */,
+				342CE4CE2C5BA289004C3774 /* Utilities.swift in Sources */,
 				342CE4AC2C5B9923004C3774 /* Extensions.swift in Sources */,
-				342CE4C82C5B9CBA004C3774 /* LoginButton.swift in Sources */,
 				342CE4B22C5B9A3E004C3774 /* HomeView.swift in Sources */,
-				342CE4C42C5B9BFB004C3774 /* GoogleSigInButton.swift in Sources */,
+				342CE4C42C5B9BFB004C3774 /* GoogleSigInButtonCustom.swift in Sources */,
 				342CE4C22C5B9BBB004C3774 /* LoginHeader.swift in Sources */,
 				342CE4882C5B92BA004C3774 /* TestPhotoEditorFirebaseApp.swift in Sources */,
 			);
