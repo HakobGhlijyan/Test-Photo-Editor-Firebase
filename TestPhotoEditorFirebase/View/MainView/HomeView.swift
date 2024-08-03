@@ -6,42 +6,12 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseCore
+import FirebaseAuth
+import GoogleSignIn
+import GoogleSignInSwift
 import PhotosUI
-
-@MainActor
-final class HomeViewModel: ObservableObject {
-    @Published var authProvider: [AuthProviderOption] = []
-    
-    func loadAuthProvider() {
-        if let providers = try? AuthenticationManager.shared.getProviders() {
-            authProvider = providers
-        }
-    }
-    
-    func signOut() throws {
-        try AuthenticationManager.shared.signOut()
-    }
-    
-    func resetPassword() async throws {
-        let authUser = try AuthenticationManager.shared.getAuthenticatedUser()
-        
-        guard let email = authUser.email else {
-            throw URLError(.badURL)
-        }
-        try await AuthenticationManager.shared.resetPassword(email: email)
-    }
-    
-    func updateEmail() async throws {
-        let emailExample = "google@g.com"
-        try await AuthenticationManager.shared.updateEmail(email: emailExample)
-    }
-    
-    func updatePassword() async throws {
-        let passwordExample = "hakob0"
-        try await AuthenticationManager.shared.updatePassword(password: passwordExample)
-    }
-    
-}
 
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
@@ -60,68 +30,11 @@ struct HomeView: View {
             
             //2
             NavigationStack {
-                    List {
-                        Section("Log Out") {
-                            Button("Log Out") {
-                                Task {
-                                    do {
-                                        try viewModel.signOut()
-                                        showSignInView = true
-                                        print("Log Out")
-                                    } catch {
-                                        print(error)
-                                    }
-                                }
-                            }
-                        }
-                        
-                        if viewModel.authProvider.contains(.email) {
-                            Section("Update") {
-                                Button("Password Update") {
-//                                    Task {
-//                                        do {
-//                                            try await viewModel.updatePassword()
-//                                            print("Password update")
-//                                        } catch {
-//                                            print(error)
-//                                        }
-//                                    }
-                                }
-                                
-                                Button("Email Update") {
-//                                    Task {
-//                                        do {
-//                                            try await viewModel.updateEmail()
-//                                            print("Email update")
-//                                        } catch {
-//                                            print(error)
-//                                        }
-//                                    }
-                                }
-                            }
-                            Section("Reset") {
-                                Button("Password Reset") {
-                                    Task {
-                                        do {
-                                            try await viewModel.resetPassword()
-                                            try viewModel.signOut()
-                                            showSignInView = true
-                                            print("Password Reset")
-                                        } catch {
-                                            print(error)
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                Settings(showSignInView: $showSignInView)
                     .navigationTitle("Settings")
             }
             .tabItem { Label("Settings", systemImage: "gear") }
             .tag(2)
-        }
-        .onAppear {
-            viewModel.loadAuthProvider()
         }
     }
 }
@@ -129,3 +42,4 @@ struct HomeView: View {
 #Preview {
     HomeView(showSignInView: .constant(false))
 }
+

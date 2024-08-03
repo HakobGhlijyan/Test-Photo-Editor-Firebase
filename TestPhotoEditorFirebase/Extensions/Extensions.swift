@@ -17,13 +17,14 @@ struct TextFieldModifier: ViewModifier {
 }
 
 struct ButtonModifier: ViewModifier {
+    var isDisabled: Bool
     func body(content: Content) -> some View {
         content
             .font(.headline)
             .foregroundStyle(.white)
             .frame(height: 55)
             .frame(maxWidth: .infinity)
-            .background(.blue)
+            .background(isDisabled ? .gray : .blue)
             .cornerRadius(10)
     }
 }
@@ -33,36 +34,21 @@ extension View {
         self.modifier(TextFieldModifier())
     }
     
-    func buttonStyleCustom() -> some View {
-        self.modifier(ButtonModifier())
+    func buttonStyleCustom(isDisabled: Bool) -> some View {
+        self.modifier(ButtonModifier(isDisabled: isDisabled))
     }
 }
 
 extension String {
-    
     func isValidEmail() -> Bool {
-        // test@email.com -> true
-        // test.com -> false
-
-        let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: .caseInsensitive)
-        
-        return regex.firstMatch(in: self, range: NSRange(location: 0, length: count)) != nil
-        
+        // Пример проверки email. Реализуйте по вашему усмотрению.
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
+        return emailPredicate.evaluate(with: self)
     }
     
-    
-    
-}
-
-extension View {
-    
-    func isValidPassword(_ password: String) -> Bool {
-            // minimum 6 characters long
-            // 1 uppercase character
-            // 1 special char
-            
-            let passwordRegex = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])(?=.*[A-Z]).{6,}$")
-            
-            return passwordRegex.evaluate(with: password)
-        }
+    func isValidPassword() -> Bool {
+        // Пример проверки пароля. Реализуйте по вашему усмотрению.
+        return self.count >= 8
+    }
 }

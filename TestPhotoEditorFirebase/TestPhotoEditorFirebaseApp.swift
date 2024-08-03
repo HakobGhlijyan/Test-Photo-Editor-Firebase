@@ -7,7 +7,10 @@
 
 import SwiftUI
 import Firebase
+import FirebaseCore
+import FirebaseAuth
 import GoogleSignIn
+import GoogleSignInSwift
 
 @main
 struct TestPhotoEditorFirebaseApp: App {
