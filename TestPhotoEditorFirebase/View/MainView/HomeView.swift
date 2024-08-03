@@ -52,17 +52,8 @@ struct HomeView: View {
         TabView(selection: $selection) {
             //1
             NavigationStack {
-                ScrollView {
-                    VStack(spacing: 0.0) {
-                        Text("Welcome to the It's Home View!")
-                            .font(.largeTitle)
-                            .padding()
-                            .multilineTextAlignment(.center)
-                        
-                        PhotoPickerView()
-                    }
-                }
-                .navigationTitle("Photo")
+                PhotoPickerView()
+                    .navigationTitle("Photo")
             }
             .tabItem { Label("Photo", systemImage: "photo") }
             .tag(1)

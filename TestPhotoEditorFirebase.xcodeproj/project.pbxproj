@@ -22,13 +22,14 @@
 		342CE4B62C5B9A70004C3774 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4B52C5B9A70004C3774 /* SignUpView.swift */; };
 		342CE4B82C5B9A85004C3774 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4B72C5B9A85004C3774 /* ResetPasswordView.swift */; };
 		342CE4BA2C5B9AA9004C3774 /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4B92C5B9AA9004C3774 /* PhotoPickerView.swift */; };
-		342CE4BE2C5B9AE1004C3774 /* PhotoPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4BD2C5B9AE1004C3774 /* PhotoPickerViewModel.swift */; };
 		342CE4C22C5B9BBB004C3774 /* LoginHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4C12C5B9BBB004C3774 /* LoginHeader.swift */; };
 		342CE4C42C5B9BFB004C3774 /* GoogleSigInButtonCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4C32C5B9BFB004C3774 /* GoogleSigInButtonCustom.swift */; };
 		342CE4C62C5B9C51004C3774 /* CustomTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4C52C5B9C51004C3774 /* CustomTextfield.swift */; };
 		342CE4CA2C5BA1FB004C3774 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4C92C5BA1FB004C3774 /* AuthenticationManager.swift */; };
 		342CE4CC2C5BA22F004C3774 /* SignInWithGoogleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4CB2C5BA22F004C3774 /* SignInWithGoogleHelper.swift */; };
 		342CE4CE2C5BA289004C3774 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4CD2C5BA289004C3774 /* Utilities.swift */; };
+		3442EB432C5E3D7500689B7B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3442EB422C5E3D7500689B7B /* ContentView.swift */; };
+		34C263FA2C5C22E00022412F /* AlertsCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C263F92C5C22E00022412F /* AlertsCustom.swift */; };
 		34F594DF2C5BDA0700ABACB1 /* EmailSignInButtonCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F594DE2C5BDA0700ABACB1 /* EmailSignInButtonCustom.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,13 +47,14 @@
 		342CE4B52C5B9A70004C3774 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		342CE4B72C5B9A85004C3774 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		342CE4B92C5B9AA9004C3774 /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
-		342CE4BD2C5B9AE1004C3774 /* PhotoPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewModel.swift; sourceTree = "<group>"; };
 		342CE4C12C5B9BBB004C3774 /* LoginHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHeader.swift; sourceTree = "<group>"; };
 		342CE4C32C5B9BFB004C3774 /* GoogleSigInButtonCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSigInButtonCustom.swift; sourceTree = "<group>"; };
 		342CE4C52C5B9C51004C3774 /* CustomTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextfield.swift; sourceTree = "<group>"; };
 		342CE4C92C5BA1FB004C3774 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		342CE4CB2C5BA22F004C3774 /* SignInWithGoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithGoogleHelper.swift; sourceTree = "<group>"; };
 		342CE4CD2C5BA289004C3774 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		3442EB422C5E3D7500689B7B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		34C263F92C5C22E00022412F /* AlertsCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsCustom.swift; sourceTree = "<group>"; };
 		34F594DE2C5BDA0700ABACB1 /* EmailSignInButtonCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignInButtonCustom.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				342CE4872C5B92BA004C3774 /* TestPhotoEditorFirebaseApp.swift */,
+				3442EB422C5E3D7500689B7B /* ContentView.swift */,
 				342CE4A72C5B9899004C3774 /* Managers */,
 				342CE4A22C5B984C004C3774 /* Model */,
 				342CE4A32C5B9856004C3774 /* ViewModel */,
@@ -122,7 +125,6 @@
 		342CE4A32C5B9856004C3774 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				342CE4BD2C5B9AE1004C3774 /* PhotoPickerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -161,6 +163,7 @@
 			children = (
 				342CE4C92C5BA1FB004C3774 /* AuthenticationManager.swift */,
 				342CE4CB2C5BA22F004C3774 /* SignInWithGoogleHelper.swift */,
+				34C263F92C5C22E00022412F /* AlertsCustom.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -275,10 +278,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34C263FA2C5C22E00022412F /* AlertsCustom.swift in Sources */,
 				342CE4C62C5B9C51004C3774 /* CustomTextfield.swift in Sources */,
+				3442EB432C5E3D7500689B7B /* ContentView.swift in Sources */,
 				342CE4B42C5B9A5B004C3774 /* LoginView.swift in Sources */,
 				342CE4CA2C5BA1FB004C3774 /* AuthenticationManager.swift in Sources */,
-				342CE4BE2C5B9AE1004C3774 /* PhotoPickerViewModel.swift in Sources */,
 				342CE4AE2C5B9A18004C3774 /* MainView.swift in Sources */,
 				342CE4B82C5B9A85004C3774 /* ResetPasswordView.swift in Sources */,
 				342CE4BA2C5B9AA9004C3774 /* PhotoPickerView.swift in Sources */,
@@ -428,6 +432,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TestPhotoEditorFirebase/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -458,6 +463,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TestPhotoEditorFirebase/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

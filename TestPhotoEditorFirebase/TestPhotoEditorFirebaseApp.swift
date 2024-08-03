@@ -14,13 +14,14 @@ struct TestPhotoEditorFirebaseApp: App {
     
     init() {
         FirebaseApp.configure()
-        print("Start \nFirebase Configure \nFirebase Configure \nFirebase Configure \nFirebase Configure \nFirebase Configure \nFirebase Configure \nWork")
+        print("Start \nFirebase Configure \nWork")
     }
     
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                MainView()
+//                MainView()
+                ContentView()
             }
         }
     }
