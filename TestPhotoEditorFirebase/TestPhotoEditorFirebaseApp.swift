@@ -20,8 +20,7 @@ struct TestPhotoEditorFirebaseApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-//                MainView()
-                ContentView()
+                MainView()
             }
         }
     }

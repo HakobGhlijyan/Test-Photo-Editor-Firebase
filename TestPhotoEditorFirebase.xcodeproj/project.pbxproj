@@ -28,7 +28,6 @@
 		342CE4CA2C5BA1FB004C3774 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4C92C5BA1FB004C3774 /* AuthenticationManager.swift */; };
 		342CE4CC2C5BA22F004C3774 /* SignInWithGoogleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4CB2C5BA22F004C3774 /* SignInWithGoogleHelper.swift */; };
 		342CE4CE2C5BA289004C3774 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CE4CD2C5BA289004C3774 /* Utilities.swift */; };
-		3442EB432C5E3D7500689B7B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3442EB422C5E3D7500689B7B /* ContentView.swift */; };
 		34C263FA2C5C22E00022412F /* AlertsCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C263F92C5C22E00022412F /* AlertsCustom.swift */; };
 		34F594DF2C5BDA0700ABACB1 /* EmailSignInButtonCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F594DE2C5BDA0700ABACB1 /* EmailSignInButtonCustom.swift */; };
 /* End PBXBuildFile section */
@@ -53,7 +52,6 @@
 		342CE4C92C5BA1FB004C3774 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		342CE4CB2C5BA22F004C3774 /* SignInWithGoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithGoogleHelper.swift; sourceTree = "<group>"; };
 		342CE4CD2C5BA289004C3774 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		3442EB422C5E3D7500689B7B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		34C263F92C5C22E00022412F /* AlertsCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsCustom.swift; sourceTree = "<group>"; };
 		34F594DE2C5BDA0700ABACB1 /* EmailSignInButtonCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignInButtonCustom.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				342CE4872C5B92BA004C3774 /* TestPhotoEditorFirebaseApp.swift */,
-				3442EB422C5E3D7500689B7B /* ContentView.swift */,
 				342CE4A72C5B9899004C3774 /* Managers */,
 				342CE4A22C5B984C004C3774 /* Model */,
 				342CE4A32C5B9856004C3774 /* ViewModel */,
@@ -280,7 +277,6 @@
 			files = (
 				34C263FA2C5C22E00022412F /* AlertsCustom.swift in Sources */,
 				342CE4C62C5B9C51004C3774 /* CustomTextfield.swift in Sources */,
-				3442EB432C5E3D7500689B7B /* ContentView.swift in Sources */,
 				342CE4B42C5B9A5B004C3774 /* LoginView.swift in Sources */,
 				342CE4CA2C5BA1FB004C3774 /* AuthenticationManager.swift in Sources */,
 				342CE4AE2C5B9A18004C3774 /* MainView.swift in Sources */,
@@ -432,7 +428,10 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TestPhotoEditorFirebase/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Мы используем вашу камеру для съемки фотографий";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Мы используем вашу фотобиблиотеку для сохранения изображений";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Мы используем вашу фотобиблиотеку для выбора изображений";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -463,7 +462,10 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TestPhotoEditorFirebase/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Мы используем вашу камеру для съемки фотографий";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Мы используем вашу фотобиблиотеку для сохранения изображений";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Мы используем вашу фотобиблиотеку для выбора изображений";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

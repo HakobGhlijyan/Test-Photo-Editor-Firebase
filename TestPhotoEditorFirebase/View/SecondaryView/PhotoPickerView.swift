@@ -13,27 +13,31 @@ import PhotosUI
 
 struct PhotoPickerView: View {
     @State private var selectedItem: PhotosPickerItem?
-    @State var image: UIImage?
-    @State private var showCamera = false
     @State private var selectedImage: UIImage?
-    
+    @State private var showCamera = false
     var body: some View {
         VStack {
             Spacer()
             
             ZStack {
-                if let image {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                }
-                
                 if let selectedImage {
                     Image(uiImage: selectedImage)
                         .resizable()
                         .scaledToFit()
+                } else {
+                    GroupBox("") {
+                        ContentUnavailableView (
+                            "No Image",
+                            systemImage: "photo",
+                            description: Text("Select an image on \nphoto library or camera")
+                        )
+                    }
                 }
+                
+                
             }
+            .frame(height: 400)
+            .frame(maxWidth: .infinity)
             .padding()
             
             Spacer()
@@ -43,7 +47,7 @@ struct PhotoPickerView: View {
                     .onChange(of: selectedItem) {
                         Task {
                             if let data = try? await selectedItem?.loadTransferable(type: Data.self) {
-                                image = UIImage(data: data)
+                                selectedImage = UIImage(data: data)
                             }
                             print("Failed to load the image")
                         }
@@ -62,11 +66,11 @@ struct PhotoPickerView: View {
                 .cornerRadius(8)
                 .fullScreenCover(isPresented: self.$showCamera) {
                     AccessCameraView(selectedImage: self.$selectedImage)
+                        .ignoresSafeArea()
                 }
                 
             }
             .padding()
-            
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

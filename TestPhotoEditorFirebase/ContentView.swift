@@ -32,14 +32,12 @@ struct ContentView: View {
                     Image(uiImage: image)
                         .resizable()
                         .scaledToFit()
-                        .frame(maxWidth: .infinity)
-                        .clipped()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
 
                     CanvasView(canvasView: $canvasView)
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color.clear)
                         .allowsHitTesting(true)
-                        .clipped()
 
                     if showTextField {
                         Text(text)
@@ -154,28 +152,33 @@ struct ContentView: View {
             image = UIImage(cgImage: cgimg)
         }
     }
-    
+
     func saveImage() {
         guard let imageToSave = generateImage() else { return }
         UIImageWriteToSavedPhotosAlbum(imageToSave, nil, nil, nil)
     }
 
     func generateImage() -> UIImage? {
-        guard let image = image else { return nil }
+        guard let baseImage = image else { return nil }
 
-        let renderer = UIGraphicsImageRenderer(size: image.size)
-        return renderer.image { ctx in
-            image.draw(at: .zero)
-            ctx.cgContext.translateBy(x: 0, y: image.size.height)
-            ctx.cgContext.scaleBy(x: 1.0, y: -1.0)
-            canvasView.drawHierarchy(in: CGRect(origin: .zero, size: image.size), afterScreenUpdates: true)
+        let renderer = UIGraphicsImageRenderer(size: baseImage.size)
+        return renderer.image { context in
+            // Рисуем базовое изображение
+            baseImage.draw(at: .zero)
+            
+            // Рисуем холст
+            let canvasImage = canvasView.drawing.image(from: canvasView.bounds, scale: UIScreen.main.scale)
+            canvasImage.draw(in: CGRect(origin: .zero, size: baseImage.size))
+            
+            // Рисуем текст, если он есть
             if showTextField {
                 let attributes: [NSAttributedString.Key: Any] = [
                     .font: font.withSize(fontSize),
                     .foregroundColor: UIColor(fontColor)
                 ]
                 let textSize = (text as NSString).size(withAttributes: attributes)
-                (text as NSString).draw(at: CGPoint(x: (image.size.width - textSize.width) / 2, y: (image.size.height - textSize.height) / 2), withAttributes: attributes)
+                let textRect = CGRect(x: (baseImage.size.width - textSize.width) / 2, y: (baseImage.size.height - textSize.height) / 2, width: textSize.width, height: textSize.height)
+                (text as NSString).draw(in: textRect, withAttributes: attributes)
             }
         }
     }
@@ -298,51 +301,3 @@ struct FontPicker: View {
 #Preview {
     ContentView()
 }
-
-
-/*
- 
- //MARK: - SINGLE
- 
- @Published private(set) var selectedImage: UIImage? = nil
- // Set image , update is in didset... -> func setImage()
- @Published var imageSelection: PhotosPickerItem? = nil {
-     didSet {
-         // For Appear this ->
-         setImage(from: imageSelection)
-     }
- }
- 
- private func setImage(from selection: PhotosPickerItem?) {
-     //SAVEGUARD
-     guard let selection else { return }
-     
-     //Load an Set in Task -> try? await , no error -> Data
-     Task {
-         // No Error
-         if let data = try? await selection.loadTransferable(type: Data.self) {
-             if let uiImage = UIImage(data: data) {
-                 selectedImage = uiImage
-                 return
-             }
-         }
-     }
- }
- 
- 
- 
- //1
- if let image = viewModel.selectedImage {
-     Image(uiImage: image)
-         .resizable()
-         .scaledToFill()
-         .frame(width: 200, height: 200)
-         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
- }
- 
- PhotosPicker(selection: $viewModel.imageSelection, matching: .images) {
-     Text("Open one : The Photo Picker")
-         .foregroundStyle(.red)
- }
- 
- */
